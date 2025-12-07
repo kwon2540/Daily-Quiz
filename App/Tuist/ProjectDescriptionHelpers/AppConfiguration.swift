@@ -2,10 +2,10 @@ import ProjectDescription
 
 public enum AppConfiguration {
     /// 앱 이름
-    public static let appName = "MyApp"
+    public static let appName = "DailyQuiz"
     
     /// 번들 ID Prefix
-    public static let organizationName = "com.ktee"
+    public static let organizationName = "com.ios-newbies"
     
     /// 공통 타겟 버전
     public static let deploymentTarget: DeploymentTargets = .iOS("18.0")

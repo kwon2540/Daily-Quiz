@@ -16,7 +16,7 @@ extension Foundation.Bundle {
 }
 // MARK: - Objective-C Bundle Accessor
 @objc
-public final class MyAppDevResources: NSObject {
+public final class DailyQuizDevResources: NSObject {
 @objc public class var bundle: Bundle {
     return .module
 }

@@ -30,13 +30,13 @@ import SwiftUI
 
 // MARK: - Asset Catalogs
 
-public enum MyAppDevAsset: Sendable {
-  public static let accentColor = MyAppDevColors(name: "AccentColor")
+public enum DailyQuizDevAsset: Sendable {
+  public static let accentColor = DailyQuizDevColors(name: "AccentColor")
 }
 
 // MARK: - Implementation Details
 
-public final class MyAppDevColors: Sendable {
+public final class DailyQuizDevColors: Sendable {
   public let name: String
 
   #if os(macOS)
@@ -65,9 +65,9 @@ public final class MyAppDevColors: Sendable {
   }
 }
 
-public extension MyAppDevColors.Color {
+public extension DailyQuizDevColors.Color {
   @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, visionOS 1.0, *)
-  convenience init?(asset: MyAppDevColors) {
+  convenience init?(asset: DailyQuizDevColors) {
     let bundle = Bundle.module
     #if os(iOS) || os(tvOS) || os(visionOS)
     self.init(named: asset.name, in: bundle, compatibleWith: nil)
@@ -82,7 +82,7 @@ public extension MyAppDevColors.Color {
 #if canImport(SwiftUI)
 @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, visionOS 1.0, *)
 public extension SwiftUI.Color {
-  init(asset: MyAppDevColors) {
+  init(asset: DailyQuizDevColors) {
     let bundle = Bundle.module
     self.init(asset.name, bundle: bundle)
   }

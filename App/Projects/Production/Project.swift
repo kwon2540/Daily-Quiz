@@ -21,7 +21,7 @@ let project = Project(
                 "Production/**"
             ],
             resources: [
-                "Production/Assets.xcassets",
+                "../Shared/Assets.xcassets",
                 // Relative path: Production -> Projects(..) -> Shared -> Launch Screen.storyboard
                 "../Shared/Launch Screen.storyboard"
             ],

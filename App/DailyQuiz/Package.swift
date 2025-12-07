@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "MyApp",
+    name: "DailyQuiz",
     platforms: [.iOS(.v18)],
     products: [
         .library(name: "EntryKit", targets: ["EntryKit"]),
