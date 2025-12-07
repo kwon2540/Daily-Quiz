@@ -4,14 +4,14 @@ import SwiftUI
 
 // MARK: - View
 @ViewAction(for: Login.self)
-struct LoginView: View {
-    @Bindable var store: StoreOf<Login>
+public struct LoginView: View {
+    @Bindable public var store: StoreOf<Login>
 
-    init(store: StoreOf<Login>) {
+    public init(store: StoreOf<Login>) {
         self.store = store
     }
 
-    var body: some View {
+    public var body: some View {
         VStack {
             Text("Welcome to Login View")
                 .font(.largeTitle)

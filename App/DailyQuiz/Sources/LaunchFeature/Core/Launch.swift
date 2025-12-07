@@ -2,30 +2,30 @@ import ComposableArchitecture
 
 // MARK: - Reducer
 @Reducer
-struct Launch {
+public struct Launch {
     @Reducer
-    enum Destination {
+    public enum Destination {
         case destination
         // Add Destination
     }
 
     @ObservableState
-    struct State: Equatable {
-        @Presents var destination: Destination?
+    public struct State: Equatable {
+        @Presents var destination: Destination.State?
         // Add State
     }
 
-    enum Action: ViewAction, BindableAction {
-        enum View {
+    public enum Action: ViewAction, BindableAction {
+        public enum View {
             case onAppear
             // Add ViewAction
         }
 
-        enum Delegate {
+        public enum Delegate {
             // Add DelegateAction
         }
 
-        enum Parent {
+        public enum Parent {
             // Add ParentAction
         }
 
@@ -36,7 +36,9 @@ struct Launch {
         case destination(PresentationAction<Destination.Action>)
     }
 
-    var body: some ReducerOf<Self> {
+    public init() {}
+
+    public var body: some ReducerOf<Self> {
         BindingReducer()
 
         Reduce { state, action in
@@ -49,16 +51,16 @@ struct Launch {
                  .delegate,
                  .parent,
                  .destination:
-                return .none 
+                return .none
             }
         }
         .ifLet(\.$destination, action: \.destination)
     }
 }
 
-private extension LaunchFeature {
+private extension Launch {
     func onAppear(state: inout State) -> Effect<Action> {
         // Add onAppear logic
-        return .none
+        .none
     }
 }
