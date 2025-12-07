@@ -49,16 +49,17 @@ struct {{ name }} {
                  .delegate,
                  .parent,
                  .destination:
-                return .none 
+                break 
             }
+            return .none
         }
         .ifLet(\.$destination, action: \.destination)
     }
 }
 
-private extension {{ name }}Feature {
+private extension {{ name }} {
     func onAppear(state: inout State) -> Effect<Action> {
         // Add onAppear logic
-        return .none
+        .none
     }
 }
