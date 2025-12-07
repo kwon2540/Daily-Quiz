@@ -11,6 +11,8 @@ public struct Launch {
 
     @ObservableState
     public struct State: Equatable {
+        public init() {}
+
         @Presents var destination: Destination.State?
         // Add State
     }
