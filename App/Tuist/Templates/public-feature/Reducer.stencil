@@ -53,13 +53,15 @@ public struct {{ name }} {
                  .delegate,
                  .parent,
                  .destination:
-                break 
+                break
             }
             return .none
         }
         .ifLet(\.$destination, action: \.destination)
     }
 }
+
+extension {{ name }}.Destination.State: Equatable {}
 
 private extension {{ name }} {
     func onAppear(state: inout State) -> Effect<Action> {
