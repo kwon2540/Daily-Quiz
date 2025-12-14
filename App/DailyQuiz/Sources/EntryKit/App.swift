@@ -1,5 +1,5 @@
 import ComposableArchitecture
-import LaunchFeature
+import RootFeature
 import SwiftUI
 
 public protocol App: SwiftUI.App {}
@@ -7,10 +7,10 @@ public protocol App: SwiftUI.App {}
 extension App {
     public var body: some Scene {
         WindowGroup {
-            LaunchView(
+            RootView(
                 store: .init(
                     initialState: .init(),
-                    reducer: Launch.init
+                    reducer: Root.init
                 )
             )
         }

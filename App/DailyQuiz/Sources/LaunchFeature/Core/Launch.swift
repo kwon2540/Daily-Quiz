@@ -4,18 +4,9 @@ import LoginFeature
 // MARK: - Reducer
 @Reducer
 public struct Launch {
-    @Reducer
-    public enum Destination {
-        case destination
-        // Add Destination
-    }
-
     @ObservableState
     public struct State: Equatable {
         public init() {}
-
-        @Presents var destination: Destination.State?
-        // Add State
     }
 
     public enum Action: ViewAction, BindableAction {
@@ -24,19 +15,8 @@ public struct Launch {
             // Add ViewAction
         }
 
-        public enum Delegate {
-            // Add DelegateAction
-        }
-
-        public enum Parent {
-            // Add ParentAction
-        }
-
         case binding(BindingAction<State>)
         case view(View)
-        case delegate(Delegate)
-        case parent(Parent)
-        case destination(PresentationAction<Destination.Action>)
     }
 
     public init() {}
@@ -50,14 +30,10 @@ public struct Launch {
                 return onAppear(state: &state)
 
             case .binding,
-                 .view,
-                 .delegate,
-                 .parent,
-                 .destination:
+                    .view:
                 return .none
             }
         }
-        .ifLet(\.$destination, action: \.destination)
     }
 }
 
