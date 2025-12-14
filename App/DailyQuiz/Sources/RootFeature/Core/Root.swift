@@ -1,9 +1,8 @@
 import ComposableArchitecture
-import LoginFeature
 
 // MARK: - Reducer
 @Reducer
-public struct Launch {
+public struct Root {
     @Reducer
     public enum Destination {
         case destination
@@ -54,14 +53,15 @@ public struct Launch {
                  .delegate,
                  .parent,
                  .destination:
-                return .none
+                break 
             }
+            return .none
         }
         .ifLet(\.$destination, action: \.destination)
     }
 }
 
-private extension Launch {
+private extension Root {
     func onAppear(state: inout State) -> Effect<Action> {
         // Add onAppear logic
         .none

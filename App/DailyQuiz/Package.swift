@@ -7,6 +7,7 @@ let package = Package(
     products: [
         .library(name: "EntryKit", targets: ["EntryKit"]),
         .library(name: "AppUI", targets: ["AppUI"]),
+        .library(name: "RootFeature", targets: ["RootFeature"]),
         .library(name: "LaunchFeature", targets: ["LaunchFeature"]),
         .library(name: "LoginFeature", targets: ["LoginFeature"]),
     ],
@@ -19,7 +20,31 @@ let package = Package(
         .target(
             name: "EntryKit",
             dependencies: [
+                "RootFeature",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ],
+            plugins: [
+                .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
+            ]
+        ),
+        .target(
+            name: "AppUI",
+            dependencies: [
+            ],
+            path: "Sources/AppUI",
+            resources: [
+                .process("Resources"),
+            ],
+            plugins: [
+                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin"),
+                .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
+            ]
+        ),
+        .target(
+            name: "RootFeature",
+            dependencies: [
                 "LaunchFeature",
+                "LoginFeature",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ],
             plugins: [
@@ -45,19 +70,6 @@ let package = Package(
             ],
             plugins: [
                 .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
-            ]
-        ),
-        .target(
-            name: "AppUI",
-            dependencies: [
-            ],
-            path: "Sources/AppUI",
-            resources: [
-                .process("Resources"),
-            ],
-            plugins: [
-                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin"),
-                .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
             ]
         ),
     ]
