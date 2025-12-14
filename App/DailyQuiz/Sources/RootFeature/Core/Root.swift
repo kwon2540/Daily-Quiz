@@ -1,6 +1,7 @@
 import ComposableArchitecture
 import LaunchFeature
 import LoginFeature
+import AppTabFeature
 
 // MARK: - Reducer
 @Reducer
@@ -9,6 +10,7 @@ public struct Root {
     public enum Destination {
         case launch(Launch)
         case login(Login)
+        case appTab(AppTab)
     }
 
     @ObservableState
@@ -36,7 +38,11 @@ public struct Root {
                 state.destination = .launch(Launch.State())
 
             case .destination(.presented(.launch(.delegate(.launchFinished(let isLogin))))):
-                state.destination = .login(Login.State())
+                if isLogin {
+                    state.destination = .appTab(AppTab.State())
+                } else {
+                    state.destination = .login(Login.State())
+                }
 
             case .view,
                  .destination:

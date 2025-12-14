@@ -1,3 +1,4 @@
+import AppTabFeature
 import AppUI
 import ComposableArchitecture
 import LaunchFeature
@@ -30,6 +31,14 @@ public struct RootView: View {
                     action: \.destination.login
                 ) {
                     LoginView(store: store)
+                }
+
+            case .appTab:
+                if let store = store.scope(
+                    state: \.destination?.appTab,
+                    action: \.destination.appTab
+                ) {
+                    AppTabView(store: store)
                 }
 
             case .none:

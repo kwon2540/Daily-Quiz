@@ -10,6 +10,7 @@ let package = Package(
         .library(name: "RootFeature", targets: ["RootFeature"]),
         .library(name: "LaunchFeature", targets: ["LaunchFeature"]),
         .library(name: "LoginFeature", targets: ["LoginFeature"]),
+        .library(name: "AppTabFeature", targets: ["AppTabFeature"]),
     ],
     dependencies: [
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: "0.62.2"),
@@ -45,6 +46,7 @@ let package = Package(
             dependencies: [
                 "LaunchFeature",
                 "LoginFeature",
+                "AppTabFeature",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ],
             plugins: [
@@ -64,6 +66,16 @@ let package = Package(
         ),
         .target(
             name: "LoginFeature",
+            dependencies: [
+                "AppUI",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ],
+            plugins: [
+                .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
+            ]
+        ),
+        .target(
+            name: "AppTabFeature",
             dependencies: [
                 "AppUI",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
