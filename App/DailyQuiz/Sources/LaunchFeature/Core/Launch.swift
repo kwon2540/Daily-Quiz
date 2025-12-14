@@ -12,11 +12,15 @@ public struct Launch {
     public enum Action: ViewAction, BindableAction {
         public enum View {
             case onAppear
-            // Add ViewAction
+        }
+
+        public enum Delegate {
+            case launchFinished(isLogin: Bool)
         }
 
         case binding(BindingAction<State>)
         case view(View)
+        case delegate(Delegate)
     }
 
     public init() {}
@@ -30,7 +34,7 @@ public struct Launch {
                 return onAppear(state: &state)
 
             case .binding,
-                    .view:
+                    .delegate:
                 return .none
             }
         }
@@ -39,7 +43,6 @@ public struct Launch {
 
 private extension Launch {
     func onAppear(state: inout State) -> Effect<Action> {
-        // Add onAppear logic
-        .none
+        .send(.delegate(.launchFinished(isLogin: false)))
     }
 }

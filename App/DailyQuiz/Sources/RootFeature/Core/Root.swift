@@ -23,12 +23,7 @@ public struct Root {
             case onAppear
         }
 
-        public enum Delegate {
-            // Add DelegateAction
-        }
-
         case view(View)
-        case delegate(Delegate)
         case destination(PresentationAction<Destination.Action>)
     }
 
@@ -38,10 +33,12 @@ public struct Root {
         Reduce { state, action in
             switch action {
             case .view(.onAppear):
-                return onAppear(state: &state)
+                state.destination = .launch(Launch.State())
+
+            case .destination(.presented(.launch(.delegate(.launchFinished(let isLogin))))):
+                state.destination = .login(Login.State())
 
             case .view,
-                 .delegate,
                  .destination:
                 break
             }
@@ -52,10 +49,3 @@ public struct Root {
 }
 
 extension Root.Destination.State: Equatable {}
-
-private extension Root {
-    func onAppear(state: inout State) -> Effect<Action> {
-        state.destination = .launch(Launch.State())
-        return .none
-    }
-}
